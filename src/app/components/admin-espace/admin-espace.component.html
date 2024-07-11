@@ -1,0 +1,106 @@
+
+<div class="full-container"
+  style="display: flex;gap: 80px;flex-direction: column;">
+  <div class="gererRond" style="display: flex;align-items: center;justify-content: center;">
+    <div class="table-container" style="width: 70%;border-radius: 9px;">
+      <p-table [paginator]="true" [scrollable]="true" [resizableColumns]="true" [value]="data"
+        [tableStyle]="{'min-width': '50%'}" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h1 class="title">
+              Gérer Ranndonée
+            </h1>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn pSortableColumn="titre">Titre <p-sortIcon field="titre" /></th>
+            <th pResizableColumn pSortableColumn="lieuDedepart">lieu de dédepart <p-sortIcon field="lieuDedepart" />
+            </th>
+            <th pResizableColumn pSortableColumn="destination">lieu de destination <p-sortIcon field="destination" />
+            </th>
+            <th pResizableColumn pSortableColumn="dateDebut">Date de debut <p-sortIcon field="dateDebut" /></th>
+            <th pResizableColumn pSortableColumn="duree">Duree <p-sortIcon field="duree" /></th>
+            <th pResizableColumn pSortableColumn="prix">Prix <p-sortIcon field="prix" /></th>
+            <th pResizableColumn pSortableColumn="trancheDage">Tranche d'age <p-sortIcon field="trancheDage" /></th>
+            <th pResizableColumn>Image</th>
+            <th pResizableColumn pSortableColumn="description">Description <p-sortIcon field="description" /></th>
+            <th pResizableColumn>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+          <tr>
+            <td>{{data.titre}}</td>
+            <td>{{data.lieuDedepart}}</td>
+            <td>{{data.destination}}</td>
+            <td>{{data.dateDebut| slice:0:10}}</td>
+            <td>{{data.duree}} Jrs</td>
+            <td>{{data.prix}} Dt</td>
+            <td>{{data.trancheDage}}</td>
+            <td> <img style="width: 90px;
+    height: 53px;" [src]="data.circuit_image"></td>
+            <td>{{data.description| slice:0:10}}</td>
+            <td>
+              <i (click)="accepter(data)" style="color: green; margin-right: 8px;" class="fas fa-check"></i>
+              <i (click)="deleteCircuit(data._id)" style="color: red;" class="fas fa-times"></i>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            Il y a {{data ? data.length : 0 }} Randonnée.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="gererUtulisateur" style="display: flex;align-items: center;justify-content: center;">
+    <div class="table-container" style="width: 70%;border-radius: 9px;">
+      <p-table [paginator]="true" [scrollable]="true" [resizableColumns]="true" [value]="userData"
+        [tableStyle]="{'min-width': '50%'}" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="caption">
+          <div class="flex align-items-center justify-content-between">
+            <h1 class="title">
+              Gérer compte Utilisateur
+            </h1>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pResizableColumn pSortableColumn="nom">Nom <p-sortIcon field="nom" /></th>
+            <th pResizableColumn pSortableColumn="prenom">Prenom <p-sortIcon field="prenom" />
+            </th>
+            <th pResizableColumn pSortableColumn="email">Email <p-sortIcon field="email" />
+            </th>
+            <th pResizableColumn pSortableColumn="motsdepass">Mots de pass <p-sortIcon field="motsdepass" />
+            </th>
+            <th pResizableColumn pSortableColumn="adress">Adress <p-sortIcon field="adress" /></th>
+            <th pResizableColumn pSortableColumn="telephone">Telephone <p-sortIcon field="telephone" /></th>
+            <th pResizableColumn pSortableColumn="role">Role <p-sortIcon field="role" /></th>
+            <th pResizableColumn>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+          <tr>
+            <td>{{data.nom}}</td>
+            <td>{{data.prenom}}</td>
+            <td>{{data.email}}</td>
+            <td>{{data.motsdepass}}</td>
+            <td>{{data.adress}}</td>
+            <td>{{data.telephone}}</td>
+            <td>{{data.role}}</td>
+            <td>
+              <i style="color: green; margin-right: 8px;" class="fas fa-check"></i>
+              <i style="color: red;" class="fas fa-times"></i>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="flex align-items-center justify-content-between">
+            Il y a {{data ? data.length : 0 }} Randonnée.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

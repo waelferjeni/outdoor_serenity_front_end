@@ -1,0 +1,151 @@
+<header class="header" id="">
+    <nav class="nav container">
+       <a href="" class="nav__logo">
+          <img src="assets/img/logo.svg" alt="logo">
+       </a>
+ 
+       <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+             <li class="nav__item">
+                <a href="circuits" class="nav__link">Circuits</a>
+             </li>
+             <li class="nav__item">
+                <a href="contact" class="nav__link">Contact</a>
+             </li>
+          </ul>
+ 
+          <div class="nav__buttons" *ngIf="token==null">
+             <a href="connexion" class="nav__button-link">Se connecter</a>
+             <a href="inscription" class="nav__button-ghost">On Commence</a>
+          </div>
+          <a  [href]="espace.name+espace.role">
+             <button class="button">
+               <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="0" fill="currentColor" stroke="currentColor" class="icon">
+                 <path d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"></path>
+               </svg>
+             </button>
+           </a>  
+ 
+          <!-- Close button -->
+          <div class="nav__close" id="nav-close">
+             <i class="ri-close-line"></i>
+          </div>
+       </div>
+ 
+       <!-- Toggle button -->
+       <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line"></i>
+       </div>
+
+
+       
+    </nav>
+ </header>
+<div class="full-container" style="display: flex;gap: 80px;flex-direction: column;margin-top: 100px;">
+    <div class="gererRond" style="display: flex;align-items: center;justify-content: center;">
+        <div class="table-container" style="width: 70%;border-radius: 9px;">
+            <p-table [paginator]="true" [scrollable]="true" [resizableColumns]="true" [value]="data"
+                [tableStyle]="{'min-width': '50%'}" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                <ng-template pTemplate="caption">
+                    <div
+                        style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;width: 100%;">
+                        <h1 class="title">
+                            Gérer Ranndonée
+                        </h1>
+                        <button (click)="appearBuyDialog()" style="background: #62acf8;
+                        color: white;
+                        width: 280px;
+                        border: 1px solid white;
+                        height: 40px;
+                        border-radius: 5px;
+                        font-size: 20px;">Payer un abonnement</button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pResizableColumn pSortableColumn="titre">Titre <p-sortIcon field="titre" /></th>
+                        <th pResizableColumn pSortableColumn="lieuDedepart">dédepart <p-sortIcon
+                                field="lieuDedepart" />
+                        </th>
+                        <th pResizableColumn pSortableColumn="destination">destination <p-sortIcon
+                                field="destination" />
+                        </th>
+                        <th pResizableColumn pSortableColumn="dateDebut">Date de debut <p-sortIcon field="dateDebut" />
+                        </th>
+                        <th pResizableColumn pSortableColumn="duree">Duree <p-sortIcon field="duree" /></th>
+                        <th pResizableColumn pSortableColumn="prix">Prix <p-sortIcon field="prix" /></th>
+                        <th pResizableColumn pSortableColumn="trancheDage">Tranche d'age <p-sortIcon
+                                field="trancheDage" /></th>
+                        <th pResizableColumn>Image</th>
+
+                        <th pResizableColumn pSortableColumn="description">Description <p-sortIcon
+                                field="description" /></th>
+                               
+                                <th pResizableColumn pSortableColumn="statut">statut <p-sortIcon
+                                    field="statut" /></th>        
+                        <th pResizableColumn>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-data>
+                    <tr>
+                        <td>{{data.titre}}</td>
+                        <td>{{data.lieuDedepart}}</td>
+                        <td>{{data.destination}}</td>
+                        <td>{{data.dateDebut| slice:0:10}}</td>
+                        <td>{{data.duree}} Jrs</td>
+                        <td>{{data.prix}} Dt</td>
+                        <td>+{{data.trancheDage}} ans</td>
+                        <td> <img style="width: 90px;
+    height: 53px;" [src]="data.circuit_image"></td>
+                        <td>{{data.description| slice:0:10}}</td>
+                        <td>{{data.statut}}</td>
+                        <td>
+                            <i (click)="editDialog(data)"
+                                style="color: green; margin-right: 8px;" class="fas fa-pencil-alt"></i>
+                            <i (click)="deleteCircuit(data._id)" style="color: red;font-size: 20px;" class="fas fa-times"></i>
+                             <i (click)="deleteCircuit(data._id)" style="color: red;" class="fas fa-times"></i>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        Il y a {{data ? data.length : 0 }} Randonnée.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+<p-dialog header="Header" [(visible)]="BuyDialog" [modal]="true" [style]="{ width: '25rem' }">
+    <ng-template pTemplate="header">
+        <h1 style="font-size: 19px;text-align: center;">Payer un abonnement</h1>
+    </ng-template>
+    <div class="radio-input">
+        <input value="value-1" name="value-radio" id="value-1" type="radio" />
+        <label for="value-1">
+            <div class="text">
+                <span class="circle"></span>
+                Monthly
+            </div>
+            <div class="price">
+                <span>$30/mo</span>
+                <span class="small">$30 billed every month</span>
+            </div>
+        </label><input value="value-2" name="value-radio" id="value-2" type="radio" />
+        <label for="value-2">
+            <div class="text">
+                <span class="circle"></span>
+                Annualy
+            </div>
+            <div class="price">
+                <span>$15/mo</span>
+                <span class="small">$180 billed once a year</span>
+            </div>
+            <span class="info">save up to 50%</span>
+        </label>
+    </div>
+
+    <ng-template pTemplate="footer">
+
+    </ng-template>
+</p-dialog>

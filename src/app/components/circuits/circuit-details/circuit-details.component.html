@@ -1,0 +1,91 @@
+<div class="full-container"
+    style="display: flex;flex-direction: row;justify-content: space-around; align-items: flex-start;height: 100%;">
+    <div class="description"
+        style="display: flex;flex-direction: column;align-items: flex-start;gap: 10px;width: 40%;height: 100%;">
+        <h1>Bienvenue dans notre randonnée intitulée <strong>{{item.title}}</strong></h1>
+        <br>
+        <p>{{item.discription}}</p>
+        <span>La randonnée <strong>{{item.title}}</strong> commence le <strong>{{item.date}}</strong>.</span>
+        <p>La randonnée <strong>{{item.title}}</strong> s'étend sur une durée de <strong>{{item.duration}}</strong>,
+            offrant suffisamment de temps pour explorer, se
+            détendre et profiter de chaque étape du circuit</p>
+        <p>
+            La randonnée se termine à <strong>{{item.destination}}</strong>, un lieu magnifique où vous pourrez vous
+            détendre et célébrer la fin
+            de votre périple.
+        </p>
+        <p>Le départ de la randonnée <strong>{{item.title}}</strong> se fait depuis
+            <strong>{{item.lieuDeDepart}}</strong> . Retrouvez-nous à ce point de rendez-vous pour commencer votre
+            aventure.
+            Destination
+        </p>
+        <p>Notre randonnée <strong>{{item.title}}</strong> est destinée aux participants âgés de plus de
+            <strong>{{item.tranchedAge}}</strong> ans, garantissant une
+            expérience adaptée aux adultes en quête d'aventure et de découverte
+        </p>
+        <p>
+            Le prix de participation pour la randonnée <strong>{{item.title}}</strong> est de
+            <strong>{{item.price}}</strong> Dt ,par personne,
+            vous offrant un excellent rapport qualité-prix pour cette expérience exceptionnelle.
+        </p>
+        <p>
+            La randonnée <strong>{{item.title}}</strong> a reçu une note moyenne de <strong>{{item.note}}/10</strong>
+            de la part de nos randonneurs
+            précédents, témoignant de la qualité et de la satisfaction générale des participants.
+        </p>
+    </div>
+    <div class="image"
+        style="width: 30%;height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+        <img [src]="item.image"
+            style="min-width: 100%; min-height: 40%;border: 2px solid black;padding: 3px;border-radius: 5px;">
+        <div class="buton-container" style="display: flex;flex-direction: column;gap: 8px;align-items: center;">
+            <button (click)="appearBuyDialog()"  style="background: #62acf8;
+            color: white;
+            width: 100%;
+            border: 1px solid white;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 20px;">Réserver</button>
+            <button *ngIf="userRole === 'Agence'" style="background: green;
+            color: white;
+            width: 100%;
+            border: 1px solid white;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 20px;">Modifier</button>
+            <button *ngIf="userRole === 'Admin'" style="background: red;
+            color: white;
+            width: 100%;
+            border: 1px solid white;
+            height: 40px;
+            border-radius: 5px;
+            font-size: 20px;">Supprimer</button>
+        </div>
+
+    </div>
+</div>
+<p-dialog header="Header" [(visible)]="BuyDialog" [modal]="true" [style]="{ width: '25rem' }">
+    <ng-template pTemplate="header">
+        <h1>Payer</h1>
+    </ng-template>
+    <form>
+        <div class="card">
+            <input type="text" id="cardNumber" placeholder="Card Number" maxlength="19" />
+            <input type="text" id="cardName" placeholder="Cardholder Name" />
+            <div class="row">
+                <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" />
+                <input type="text" id="cvv" placeholder="CVV" maxlength="3" />
+            </div>
+        </div>
+        <button style="    background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;text-align: center;margin-top: 10px;margin-left: 130px;" type="submit">Payer</button>
+    </form>
+    <ng-template pTemplate="footer">
+
+    </ng-template>
+</p-dialog>

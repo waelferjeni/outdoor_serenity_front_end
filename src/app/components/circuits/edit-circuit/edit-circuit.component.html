@@ -1,0 +1,205 @@
+<div class="full-container" style="min-height: 500px; width: 100%">
+    <div class="add-circuit-form">
+      <form [formGroup]="editCircuitForm" (ngSubmit)="saveCercuits()" class="form">
+        <h1 style="color: white" >
+          Modifier un circuit
+        </h1>
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="titre"
+            placeholder="Nom du circuit"
+            required
+          />
+          <div
+            *ngIf="
+              getFormControl('titre')?.invalid && getFormControl('titre')?.touched
+            "
+            class="error-message"
+          >
+            Le nom du circuit est requis.
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <textarea
+            style="min-height: 49px"
+            formControlName="description"
+            placeholder="Description"
+          ></textarea>
+        </div>
+  
+        <div class="horizontal-inputs">
+          <div style="width: 48%">
+            <input
+              type="text"
+              formControlName="lieuDedepart"
+              placeholder="Lieu de depart"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('lieuDedepart')?.invalid &&
+                getFormControl('lieuDedepart')?.touched
+              "
+              class="error-message"
+            >
+              Le lieu de départ est requis.
+            </div>
+          </div>
+          <div style="width: 48%">
+            <input
+              type="text"
+              formControlName="destination"
+              placeholder="Lieu de Destination"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('destination')?.invalid &&
+                getFormControl('destination')?.touched
+              "
+              class="error-message"
+            >
+              La destination est requise.
+            </div>
+          </div>
+        </div>
+  
+        <div class="horizontal-inputs">
+          <div style="width: 48%">
+            <input
+              type="date"
+              formControlName="dateDebut"
+              placeholder="Date de début"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('dateDebut')?.invalid &&
+                getFormControl('dateDebut')?.touched
+              "
+              class="error-message"
+            >
+              La date de début est requise.
+            </div>
+          </div>
+          <div style="width: 48%">
+            <input
+              type="number"
+              formControlName="duree"
+              min="1"
+              step="1"
+              required
+              placeholder="Durée"
+            />
+            <div
+              *ngIf="
+                getFormControl('duree')?.invalid &&
+                getFormControl('duree')?.touched
+              "
+              class="error-message"
+            >
+              Le temps est requis et doit être supérieur à 0.
+            </div>
+          </div>
+        </div>
+        <div class="horizontal-inputs">
+          <div style="width: 48%">
+            <input
+              type="number"
+              formControlName="prix"
+              placeholder="prix"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('prix')?.invalid && getFormControl('prix')?.touched
+              "
+              class="error-message"
+            >
+              Le tarif est requis.
+            </div>
+          </div>
+          <div style="width: 48%">
+            <input
+              type="number"
+              formControlName="trancheDage"
+              placeholder="Tranche d'age"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('trancheDage')?.invalid &&
+                getFormControl('trancheDage')?.touched
+              "
+              class="error-message"
+            >
+              Le tranche d'age est requis.
+            </div>
+          </div>
+          <div style="width: 48%">
+            <input
+              type="number"
+              formControlName="nbrPlcae"
+              placeholder="nombre de place"
+              required
+            />
+            <div
+              *ngIf="
+                getFormControl('nbrPlcae')?.invalid &&
+                getFormControl('nbrPlcae')?.touched
+              "
+              class="error-message"
+            >
+              Le nombre de place est requis.
+            </div>
+          </div>
+        </div>
+  
+        <div class="input-group">
+          <input
+          (change)="onFileChange($event)"
+            style="padding: 10px; height: 40px"
+            type="file"
+            accept="image/*"
+          />
+        </div>
+  
+        <button
+          type="submit"
+          class="cssbuttons-io-button"
+          
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+          >
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              fill="currentColor"
+              d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"
+            ></path>
+          </svg>
+          <span>Modifier</span>
+        </button>
+      </form>
+      <div
+        (click)="close()"
+        style="
+          padding: 5px 0;
+          display: flex;
+          gap: 4px;
+          align-items: center;
+          cursor: pointer;
+        "
+      >
+        <i class="fas fa-chevron-left" style="color: white"></i>
+        <a style="color: white; font-weight: 300">Retour</a>
+      </div>
+    </div>
+  </div>
+  <div class="background"></div>
+  

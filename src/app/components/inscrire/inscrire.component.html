@@ -1,0 +1,66 @@
+<div
+  style="
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  "
+>
+  <form class="form" [formGroup]="registerForm">
+    <p class="title">S'inscrire</p>
+    <p class="message">
+      inscrivez-vous et obtenez un accés complet a notre application.
+    </p>
+    <div class="flex">
+      <label>
+        <input formControlName="prenom" required="" placeholder="" type="text" class="input" />
+        <span>Prénom</span>
+      </label>
+
+      <label>
+        <input formControlName="nom" required="" placeholder="" type="text" class="input" />
+        <span>Nom</span>
+      </label>
+    </div>
+
+    <label>
+      <input required="" formControlName="email" placeholder="" type="email" class="input" />
+      <span>Email</span>
+    </label>
+
+    <label>
+      <input required="" formControlName="telephone" placeholder="" type="email" class="input" />
+      <span>Telephone</span>
+    </label>
+
+    <label>
+      <input required="" formControlName="adresse" placeholder="" type="email" class="input" />
+      <span>Adresse</span>
+    </label>
+
+    <label>
+      <input required="" placeholder="" formControlName="password" type="password" class="input" />
+      <span>Mot de passe</span>
+    </label>
+    <label>
+      <input  required="" placeholder="" formControlName="confirmPassword" type="password" class="input" />
+      <span>Confirmer mot de passe</span>
+    </label>
+
+    <fieldset class="role-group">
+      <legend>Rôle</legend>
+      <label>
+        <input type="radio" formControlName="role" name="role" value="agence" />
+        Agence
+      </label>
+      <label>
+        <input type="radio" formControlName="role" name="role" value="client" />
+        Client
+      </label>
+    </fieldset>
+    <button (click)="register()" class="submit">Sinscrire</button>
+    <p  class="signin">
+      vous avez un compte? <a href="#">Se connecter</a>
+    </p>
+  </form>
+</div>

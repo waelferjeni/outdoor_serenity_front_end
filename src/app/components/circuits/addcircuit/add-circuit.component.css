@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.full-container {
+
+	width: 100vw;
+	height: 100vh;
+	position: initial;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.full-container>.add-circuit-form {
+	position: relative;
+	z-index: 100000;
+	filter: none !important;
+	background: rgb(95 137 189 / 80%);
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 41%;
+	height: auto;
+	overflow-y: auto;
+}
+
+.add-circuit-form>form {
+	filter: none;
+	/* Ensure no blur is applied to the form itself */
+	font-family: 'Montserrat', sans-serif;
+}
+
+.add-circuit-form h1 {
+	margin-bottom: 20px;
+	text-align: center;
+	font-weight: 800;
+}
+
+.add-circuit-form .input-group,
+.add-circuit-form .horizontal-inputs {
+	margin-bottom: 10px;
+}
+
+.add-circuit-form .input-group input,
+.add-circuit-form .input-group textarea,
+.add-circuit-form .horizontal-inputs input {
+	width: 100%;
+	margin-top: 5px;
+	border: 1px solid #62acf8;
+	padding: 1rem;
+	border-radius: 1rem;
+	background: #e8e8e8;
+	box-shadow: 20px 20px 60px #c5c5c5,
+		-20px -20px 60px #ffffff;
+	transition: 0.3s;
+	height: 20px;
+
+	&:focus {
+		outline-color: #62acf8;
+		background: #e8e8e8;
+		box-shadow: inset 20px 20px 60px #c5c5c5,
+			inset -20px -20px 60px #ffffff;
+		transition: 0.3s;
+	}
+}
+
+.add-circuit-form .horizontal-inputs {
+	display: flex;
+	justify-content: space-between;
+}
+
+.add-circuit-form .horizontal-inputs input {
+	width: 100%;
+}
+
+.add-circuit-form button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 10px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #62acf8;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.add-circuit-form button:hover {
+	background-color: #258aef;
+}
+
+.add-circuit-form button svg {
+	margin-right: 8px;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	margin-top: 4px;
+}
+
+.background {
+	background-image: url("/assets/img/perdu-randonnee-reflexes.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	filter: blur(5px);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+
+}
